@@ -1,0 +1,34 @@
+version : '2'
+services:
+
+  mongodb:
+    build:
+      context: .
+      dockerfile: mongodb.dockerfile
+    expose:
+      - "27017"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: starwars_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root123
+
+      container_name: mongodb
+
+  appserver:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    ports:
+      - "8080:8080"
+
+    environment:
+      DATABASE_HOST: mongodb
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root123
+      DATABASE_NAME: starwars_db
+      DATABASE_PORT: 27017
+
+    depends_on:
+      - mongodb

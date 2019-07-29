@@ -1,0 +1,14 @@
+build/
+bin/
+.idea/
+.classpath
+.project
+.settings/
+#build.properties
+target/
+lib
+.project
+.classpath
+*.project
+*.classpath
+/.metadata/
